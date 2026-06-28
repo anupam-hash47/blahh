@@ -10,58 +10,52 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:'Segoe UI',sans-serif;
 }
 
 body{
-    height:100vh;
     overflow:hidden;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#ffdde1,#ffc3a0);
-    background-size:400% 400%;
-    animation:bg 12s ease infinite;
-}
-
-@keyframes bg{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
+    height:100vh;
+    background:linear-gradient(135deg,#fff7f2,#ffe4ec,#fffef9,#eefbea);
 }
 
 .card{
     width:90%;
-    max-width:600px;
-    background:rgba(255,255,255,.18);
-    backdrop-filter:blur(12px);
-    border-radius:20px;
-    padding:35px;
+    max-width:700px;
+    padding:40px;
     text-align:center;
-    color:white;
-    box-shadow:0 15px 35px rgba(0,0,0,.25);
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(12px);
+    border-radius:25px;
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+    z-index:10;
 }
 
 h1{
+    color:#d63384;
     font-size:42px;
-    margin-bottom:15px;
+    margin-bottom:20px;
 }
 
 #typing{
-    min-height:80px;
+    color:#444;
     font-size:22px;
-    line-height:1.6;
+    line-height:1.8;
+    min-height:120px;
 }
 
 button{
     margin-top:25px;
     padding:15px 35px;
     border:none;
-    border-radius:50px;
-    background:white;
-    color:#ff4d6d;
-    font-size:18px;
+    border-radius:40px;
+    background:#d63384;
+    color:white;
     cursor:pointer;
+    font-size:18px;
     transition:.3s;
 }
 
@@ -69,34 +63,33 @@ button:hover{
     transform:scale(1.08);
 }
 
-#message{
+#letter{
     display:none;
-    margin-top:25px;
-    font-size:22px;
-    animation:fade 1s;
+    margin-top:30px;
+    font-size:20px;
+    line-height:1.8;
+    color:#444;
+    animation:fade 1.2s;
 }
 
 @keyframes fade{
-    from{opacity:0;transform:translateY(20px);}
-    to{opacity:1;transform:translateY(0);}
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
 }
 
-.heart{
+.floating{
     position:absolute;
-    color:white;
-    font-size:20px;
     animation:float linear infinite;
+    user-select:none;
+    opacity:.9;
 }
 
 @keyframes float{
     from{
-        transform:translateY(100vh) scale(.5);
-        opacity:0;
+        transform:translateY(110vh) rotate(0deg);
     }
-    20%{opacity:1;}
     to{
-        transform:translateY(-100px) scale(1.5);
-        opacity:0;
+        transform:translateY(-150px) rotate(360deg);
     }
 }
 </style>
@@ -105,64 +98,110 @@ button:hover{
 <body>
 
 <div class="card">
-    <h1>❤️ Hey Beautiful ❤️</h1>
 
-    <p id="typing"></p>
+<h1>🌷 For My Beautiful Girl 🪷</h1>
 
-    <button onclick="showMessage()">Open My Heart 💖</button>
+<p id="typing"></p>
 
-    <div id="message">
-        🌹<br><br>
-        You make my ordinary days extraordinary.<br><br>
+<button onclick="showLetter()">
+Open My Heart 💖
+</button>
 
-        Your smile is my favorite view.<br>
-        Your happiness is my favorite dream.<br>
-        Your love is my greatest gift.<br><br>
+<div id="letter">
 
-        Thank you for being you. ❤️<br><br>
+<p>
 
-        <h2>I Love You Forever 💕</h2>
-    </div>
+🌷 Like tulips blooming in spring, you fill my life with warmth and happiness.
+
+<br><br>
+
+🪷 Your kindness is gentle, your smile is beautiful, and your heart is my favorite place.
+
+<br><br>
+
+You make every ordinary day feel magical.
+
+Thank you for loving me and for simply being you.
+
+<br><br>
+
+May your days always be filled with flowers, laughter, adorable cats, and colorful parrots.
+
+<br><br>
+
+<b>I Love You Today, Tomorrow, and Always. ❤️</b>
+
+</p>
+
+</div>
+
 </div>
 
 <script>
+
 const text =
-"Every heartbeat reminds me of you. Every smile I wear has a little bit of you in it. Thank you for filling my life with love, laughter, and endless happiness. ❤️";
+"Hello Beautiful... 🌷 Every moment with you is my favorite memory. I hope this little surprise brings a smile to your face. ❤️";
 
 let i=0;
 
-function typeWriter(){
-    if(i<text.length){
-        document.getElementById("typing").innerHTML+=text.charAt(i);
-        i++;
-        setTimeout(typeWriter,45);
-    }
-}
-typeWriter();
+function type(){
 
-function showMessage(){
-    document.getElementById("message").style.display="block";
+if(i<text.length){
 
-    for(let i=0;i<40;i++){
-        createHeart();
-    }
+document.getElementById("typing").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(type,45);
+
 }
 
-function createHeart(){
-    const heart=document.createElement("div");
-    heart.className="heart";
-    heart.innerHTML="❤";
-
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.animationDuration=(3+Math.random()*4)+"s";
-    heart.style.fontSize=(15+Math.random()*30)+"px";
-
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{
-        heart.remove();
-    },7000);
 }
+
+type();
+
+function showLetter(){
+
+document.getElementById("letter").style.display="block";
+
+for(let i=0;i<45;i++){
+
+createItem();
+
+}
+
+}
+
+function createItem(){
+
+const icons=[
+"🐱","🐱","🐱",
+"🦜",
+"🌷","🪷","🌷","🪷","🌷"
+];
+
+const item=document.createElement("div");
+
+item.className="floating";
+
+item.innerHTML=icons[Math.floor(Math.random()*icons.length)];
+
+item.style.left=Math.random()*100+"vw";
+
+item.style.fontSize=(28+Math.random()*22)+"px";
+
+item.style.animationDuration=(8+Math.random()*8)+"s";
+
+document.body.appendChild(item);
+
+setTimeout(()=>{
+item.remove();
+},16000);
+
+}
+
+setInterval(createItem,700);
+
 </script>
 
 </body>
